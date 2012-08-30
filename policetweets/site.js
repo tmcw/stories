@@ -36,13 +36,24 @@ for (var i = 0; i < distilled.length; i++) {
     p.innerHTML = distilled[i].text;
     distilled[i].d = d;
     distilled[i].p = p;
+    distilled[i].state = 'shown';
 }
 
+var ss_max = function(x) {
+    var max;
+    for (var i = 0; i < x.length; i++) {
+        // On the first iteration of this loop, min is
+        // undefined and is thus made the minimum element in the array
+        if (x[i] > max || max === undefined) max = x[i];
+    }
+    return max;
+};
+
 function setGraph(data) {
-    graph.innerHTML = '';
+    while (graph.firstChild) graph.removeChild(graph.firstChild);
     var values = [];
     for (var i = 0; i < data.length; i++) values.push(data[i][1]);
-    var max = ss.max(values);
+    var max = ss_max(values);
     var scale = function(x) {
         return 100 * x / max;
     };
@@ -75,11 +86,15 @@ function search(value) {
     for (var i = 0; i < distilled.length; i++) {
         var m = distilled[i].text.match(r);
         if (!m) {
-            distilled[i].d.className = 'tweet hide';
-            distilled[i].p.innerHTML = distilled[i].text;
+            if (distilled[i].d.state != 'hidden') {
+                distilled[i].d.className = 'tweet hide';
+                distilled[i].d.state = 'hidden';
+                distilled[i].p.innerHTML = distilled[i].text;
+            }
         } else {
             if (m[1]) matches.push('' + m[1].toLowerCase());
             distilled[i].d.className = 'tweet';
+            distilled[i].d.state = 'shown';
             distilled[i].p.innerHTML = distilled[i].text.replace(
                 r, function(match) {
                     return '<em>' + match + '</em>';
