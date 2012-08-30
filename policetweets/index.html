@@ -63,16 +63,21 @@
             a {
                 color:blue;
             }
+            #about a {
+                color:yellow;
+            }
             #about {
                 position:absolute;
                 top:0;
                 left:0;
                 right:0;
                 bottom:0;
-                font:30px/40px 'Helvetica';
+                font:20px/30px 'Helvetica';
                 padding:30px;
                 z-index:999;
+                color:#fff;
                 background:#fff;
+                background:rgba(50, 50, 50, 0.9);
             }
             #q {
                 position:fixed;
@@ -86,23 +91,34 @@
         <div id='about'>
             <p>In <a href='http://wamu.org/news/11/08/26/dc_police_to_encrypt_radio_communications.php'>September 2011</a>,
             the DC police department <a href='http://www.huffingtonpost.com/2011/09/21/dc-encrypts-police-radios_n_973954.html'>encrypted
-                their radio communications</a>.</p>
+                their radio communications</a>. @dcfireems started <a href='http://dcist.com/2011/09/silence.php'>filtering
+                their account around the same time</a>, saying
+            <blockquote>"Social media is for parties. We ain’t givin’ parties." –
+                <a href='https://twitter.com/wallscomm'>Lon Walls</a></blockquote></p>
+            <p>Luckily, <a href='http://dcist.com/2011/09/the_partys_still_going_no_filter_fo.php'>they reversed this decision.</a>
+            (I learned about my apartment fire via twitter)</p>
+            <hr />
             <p>The search box on the right accepts both standard
             queries and <a href='http://regexone.com/'>regular expressions</a>.
             If your query has a matching group, like the query
             <code>(\d+lbs)</code>, the matches will be made into a chart
             on the right side of the page, showing number of occurrences for
             each match.</p>
-            <p>Click anywhere to start.</p>
+            <p>This has flaws: the police often extend tweets by
+            prefixing <small>(1/2) (2/2)</small> to write &gt;140 characters.
+            The tweets also don't represent <a href='http://data.dc.gov/'>all
+                police data</a> - only the events which were mentioned on
+            twitter.</p>
+            <p>Copy this page's URL at any time to share a search query.</p>
+            <p>Click here to start.</p>
         </div>
         <div class='page'>
             <input type='text' id='search' />
-            <a href='#' id='q'>?</a>
+            <a href='#' id='q'>what is this?</a>
             <table id='graph'>
             </table>
             <div id='list'></div>
         </div>
-        <script src="http://d3js.org/d3.v2.js"></script>
         <script src='simple_statistics.js'></script>
         <script src='distilled.js'></script>
         <script src='site.js'></script>

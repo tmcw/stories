@@ -4,6 +4,7 @@ var q = document.getElementById('q');
 var searchbox = document.getElementById('search');
 var about = document.getElementById('about');
 
+
 distilled = distilled.reverse();
 
 function simpleDate(d) {
@@ -58,12 +59,17 @@ function setGraph(data) {
 }
 
 var last = '';
-searchbox.onkeyup = function(e) {
+searchbox.onkeyup = function() {
+    search(this.value);
+};
+
+function search(value) {
+    window.location.hash = encodeURIComponent(value);
     var r;
-    if (this.value.indexOf('/') === 0) {
-        r = new RegExp(this.value, 'i');
+    if (value.indexOf('/') === 0) {
+        r = new RegExp(value, 'i');
     } else {
-        r = new RegExp(this.value, 'i');
+        r = new RegExp(value, 'i');
     }
     var matches = [];
     for (var i = 0; i < distilled.length; i++) {
@@ -109,3 +115,9 @@ about.onclick = function() {
 q.onclick = function() {
     about.style.display = 'block';
 };
+
+if (window.location.hash) {
+    searchbox.value = decodeURIComponent(window.location.hash.substring(1));
+    search(searchbox.value);
+    about.style.display = 'none';
+}
