@@ -4,7 +4,6 @@ var q = document.getElementById('q');
 var searchbox = document.getElementById('search');
 var about = document.getElementById('about');
 
-
 distilled = distilled.reverse();
 
 function simpleDate(d) {
@@ -69,7 +68,6 @@ function setGraph(data) {
     }
 }
 
-var last = '';
 searchbox.onkeyup = function() {
     search(this.value);
 };
@@ -80,35 +78,32 @@ function search(value) {
     } else {
         window.location.hash = encodeURIComponent(value);
     }
-    var r;
-    if (value.indexOf('/') === 0) {
-        r = new RegExp(value, 'i');
-    } else {
-        r = new RegExp(value, 'i');
-    }
+    var r = new RegExp(value, 'i');
     var matches = [];
+    function highlight(match) {
+        return '<em>' + match + '</em>';
+    }
     for (var i = 0; i < distilled.length; i++) {
-        var m = distilled[i].text.match(r);
-        if (!m) {
+        if (!r.test(distilled[i].text)) {
             if (distilled[i].d.state != 'hidden') {
                 distilled[i].d.className = 'tweet hide';
                 distilled[i].d.state = 'hidden';
                 distilled[i].p.innerHTML = distilled[i].text;
             }
         } else {
+            var m = distilled[i].text.match(r);
             if (m[1]) matches.push('' + m[1].toLowerCase());
-            distilled[i].d.className = 'tweet';
+            if (distilled[i].d.state !== 'shown') {
+                distilled[i].d.className = 'tweet';
+            }
             distilled[i].d.state = 'shown';
-            distilled[i].p.innerHTML = distilled[i].text.replace(
-                r, function(match) {
-                    return '<em>' + match + '</em>';
-            });
+            distilled[i].p.innerHTML = distilled[i].text.replace(r, highlight);
         }
     }
     var counts = {};
-    for (var i = 0; i < matches.length; i++) {
-        counts[matches[i]] = counts[matches[i]] ?
-            counts[matches[i]] + 1 : 1;
+    for (var j = 0; j < matches.length; j++) {
+        counts[matches[j]] = counts[matches[j]] ?
+            counts[matches[j]] + 1 : 1;
     }
     var rows = [];
     for (var x in counts) {
@@ -125,7 +120,7 @@ function search(value) {
         }
     });
     setGraph(rows);
-};
+}
 
 about.onclick = function() {
     about.style.display = 'none';
