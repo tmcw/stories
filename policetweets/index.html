@@ -3,111 +3,44 @@
     <head>
         <title>Police tweets</title>
          <meta charset="utf-8"/>
-        <style>
-            body {
-                margin:20px 20px;
-                font:normal 10px/20px 'Verdana';
-            }
-            div.tweet.hide {
-                display:none;
-            }
-            div.tweet p {
-                display:inline;
-                margin:0;
-                top:0;
-            }
-            a.date {
-                margin-right:10px;
-                text-decoration:none;
-                color:#999;
-            }
-            a.date:hover {
-                text-decoration:underline;
-            }
-            .right {
-                width:400px;
-                float:right;
-            }
-            #search {
-                width:400px;
-                font:normal 20px/20px 'Helvetica';
-            }
-            #graph {
-                width:400px;
-                border-spacing:0;
-                border-collapse:collapse;
-                padding:0;
-                line-height:12px;
-            }
-            #graph tr th {
-                text-align:left;
-            }
-            #graph tr th {
-                font-weight:normal;
-                padding-left:5px;
-            }
-            #graph tr td {
-                width:100%;
-            }
-            #graph tr td .bar {
-                float:right;
-            }
-            em {
-                color:#d23634;
-                font-style:normal;
-            }
-            .bar {
-                background:#d23634;
-                height:10px;
-            }
-            small {
-                font-size:10px;
-                line-height:10px;
-            }
-            a {
-                color:blue;
-            }
-            #about a {
-                color:yellow;
-            }
-            #about {
-                position:absolute;
-                top:0;
-                left:0;
-                right:0;
-                bottom:0;
-                font:20px/30px 'Helvetica';
-                padding:30px;
-                z-index:999;
-                color:#fff;
-                background:#fff;
-                background:rgba(50, 50, 50, 0.9);
-            }
-            .br {
-                position:fixed;
-                bottom:15px;
-                right:15px;
-                font-size:12px;
-            }
-        </style>
+         <link href='site.css' type='text/css' rel='stylesheet' />
     </head>
     <body>
         <div id='about'>
+
             <p>In September 2011,
-            the <a href='https://twitter.com/DCPoliceDept'>Washington, DC police department</a> encrypted
+            the <a href='https://twitter.com/DCPoliceDept'>Washington, DC police department</a> began
+            encrypting all of
             their radio communications<sup><a href='http://www.huffingtonpost.com/2011/09/21/dc-encrypts-police-radios_n_973954.html'>[1]</a>
                 <a href='http://dcist.com/2011/11/lanier_defends_police_radio_encrypt.php'>[2]</a>
                 <a href='http://wamu.org/news/11/08/26/dc_police_to_encrypt_radio_communications.php'>[3]</a>
-                    </sup>. @dcfireems started <a href='http://dcist.com/2011/09/silence.php'>filtering
+                </sup>, including dispatching.
+                @dcfireems started <a href='http://dcist.com/2011/09/silence.php'>filtering
                 their account around the same time</a>, saying
             <blockquote>"Social media is for parties. We ain't givin' parties." -
-                <a href='https://twitter.com/wallscomm'>Lon Walls</a><a href='http://dcist.com/2011/09/silence.php'>[1]</a></blockquote></p>
-            <p>The Fire/EMS reversed their decision<sup><a href='http://dcist.com/2011/09/the_partys_still_going_no_filter_fo.php'>[1]</a></sup>
-            (I learned about my apartment fire via twitter)</p>
+                <a href='https://twitter.com/wallscomm'>Lon Walls</a><sup><a href='http://dcist.com/2011/09/silence.php'>[1]</a></sup></blockquote></p>
+
+            <p>The Fire/EMS reversed their decision<sup><a href='http://dcist.com/2011/09/the_partys_still_going_no_filter_fo.php'>[1]</a></sup>, fortunately -
+            I learned about my apartment fire (which destroyed a room of
+            a rowhouse a year ago) via the DCFireEMS twitter account.</p>
+
             <p>Luckily, the @DCPoliceDept twitter account is still active
             and public. This site uses an archive<sup><a href='https://gist.github.com/3220747'>[1]</a></sup>
             of it (presumably public-domain) for as much as the Twitter API
             will offer. For those into tinkering, <code><a href='tweets.json'>tweets.json</a></code></p>
+
+            <p>The encryption is currently supported by <a href='http://en.wikipedia.org/wiki/Cathy_L._Lanier'>Chief of Police Cathy Lanier</a>,
+            who is otherwise <a href='http://dcist.com/2011/12/poll_finds_sinking_numbers_for_gray.php'>popular in the district</a>.
+            Perhaps the strongest evidence against the new total encryption
+            is the fact that police have had encrypted private channels
+            already<sup><a href='http://oneminutelawyer.com/more-police-departments-encrypt-communications-journalists-object/'>[1]</a></sup>
+            for sensitive information.</p>
+
+            <p>At the very least, DC needs better transparency for its police
+            force to those who need to know, like local media and ethics watchdogs.
+            Can this be resolved while also ensuring safety &amp; flexibility
+            for law enforcement?</p>
+
             <hr />
             <p>The search box on the right accepts both standard
             queries and <a href='http://regexone.com/'>regular expressions</a>.
@@ -119,11 +52,9 @@
             prefixing <small>(1/2) (2/2)</small> to write &gt;140 characters.
             The tweets also don't represent <a href='http://data.dc.gov/'>all
                 police data</a> - only the events which were mentioned on
-            twitter.</p>
-            <p>This site was last generated 8/30/2012 and reaches back to
+            twitter. This site was last generated 8/30/2012 and reaches back to
             4/22/2012.</p>
-            <p>Copy this page's URL at any time to share a search query.</p>
-            <p>Click here to start.</p>
+            <p>Copy this page's URL at any time to share a search query. Click anywhere to start.</p>
         </div>
         <div class='page'>
             <div class='right'>
