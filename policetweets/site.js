@@ -19,7 +19,7 @@ function simpleDate(d) {
     h = '' + h;
     if (h.length === 1) h = '0' + h;
     return h + ':' + m + ampm + ' ' +
-        d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
+        (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
 }
 
 for (var i = 0; i < distilled.length; i++) {
@@ -116,8 +116,15 @@ q.onclick = function() {
     about.style.display = 'block';
 };
 
-if (window.location.hash) {
+function hashUpdate() {
     searchbox.value = decodeURIComponent(window.location.hash.substring(1));
     search(searchbox.value);
     about.style.display = 'none';
+}
+
+if (window.location.hash && window.location.hash !== '#') {
+    hashUpdate();
+}
+if ('onhashchange' in window) {
+    window.onhashchange = hashUpdate;
 }

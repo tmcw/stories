@@ -24,16 +24,15 @@
             a.date:hover {
                 text-decoration:underline;
             }
+            .right {
+                width:400px;
+                float:right;
+            }
             #search {
+                width:400px;
                 font:normal 20px/20px 'Helvetica';
-                position:absolute;
-                top:20px;
-                right:20px;
             }
             #graph {
-                position:absolute;
-                top:60px;
-                right:20px;
                 width:400px;
                 border-spacing:0;
                 border-collapse:collapse;
@@ -80,32 +79,36 @@
                 background:#fff;
                 background:rgba(50, 50, 50, 0.9);
             }
-            #q {
+            .br {
                 position:fixed;
                 bottom:15px;
                 right:15px;
-                font-size:20px;
+                font-size:12px;
             }
         </style>
     </head>
     <body>
         <div id='about'>
             <p>In September 2011,
-            the DC police department encrypted
+            the <a href='https://twitter.com/DCPoliceDept'>Washington, DC police department</a> encrypted
             their radio communications<sup><a href='http://www.huffingtonpost.com/2011/09/21/dc-encrypts-police-radios_n_973954.html'>[1]</a>
                 <a href='http://dcist.com/2011/11/lanier_defends_police_radio_encrypt.php'>[2]</a>
                 <a href='http://wamu.org/news/11/08/26/dc_police_to_encrypt_radio_communications.php'>[3]</a>
                     </sup>. @dcfireems started <a href='http://dcist.com/2011/09/silence.php'>filtering
                 their account around the same time</a>, saying
             <blockquote>"Social media is for parties. We ain't givin' parties." -
-                <a href='https://twitter.com/wallscomm'>Lon Walls</a></blockquote></p>
-            <p>Luckily, <a href='http://dcist.com/2011/09/the_partys_still_going_no_filter_fo.php'>they reversed this decision.</a>
+                <a href='https://twitter.com/wallscomm'>Lon Walls</a><a href='http://dcist.com/2011/09/silence.php'>[1]</a></blockquote></p>
+            <p>The Fire/EMS reversed their decision<sup><a href='http://dcist.com/2011/09/the_partys_still_going_no_filter_fo.php'>[1]</a></sup>
             (I learned about my apartment fire via twitter)</p>
+            <p>Luckily, the @DCPoliceDept twitter account is still active
+            and public. This site uses an archive<sup><a href='https://gist.github.com/3220747'>[1]</a></sup>
+            of it (presumably public-domain) for as much as the Twitter API
+            will offer. For those into tinkering, <code><a href='tweets.json'>tweets.json</a></code></p>
             <hr />
             <p>The search box on the right accepts both standard
             queries and <a href='http://regexone.com/'>regular expressions</a>.
             If your query has a matching group, like the query
-            <code>(\d+lbs)</code>, the matches will be made into a chart
+            <code>(\d+)lbs?</code>, the matches will be made into a chart
             on the right side of the page, showing number of occurrences for
             each match.</p>
             <p>This has flaws: the police often extend tweets by
@@ -113,14 +116,28 @@
             The tweets also don't represent <a href='http://data.dc.gov/'>all
                 police data</a> - only the events which were mentioned on
             twitter.</p>
+            <p>This site was last generated 8/30/2012 and reaches back to
+            4/22/2012.</p>
             <p>Copy this page's URL at any time to share a search query.</p>
             <p>Click here to start.</p>
         </div>
         <div class='page'>
-            <input type='text' id='search' />
-            <a href='#' id='q'>what is this?</a>
-            <table id='graph'>
-            </table>
+            <div class='right'>
+                <input type='text' id='search' />
+                <br />
+                <small>examples:
+                    <a href='#%5Cs(NW%7CNE%7CSW%7CSE)%5Cb'>\s(NW|NE|SW|SE)\b (quadrants)</a>
+                    <a href='#(%5Cd%2B)%5Cs%3Flbs%3F'>(\d+)\s?lbs? (weights)</a>
+                    <a href='#((fe)%3Fmale)'>((fe)?male)</a>
+                </small>
+                <table id='graph'>
+                </table>
+            </div>
+            <div class='br'>
+                <a href='https://twitter.com/DCPoliceDept'>/data @DCPoliceDept</a>
+                <a href='http://macwright.org/'>/by macwright.org</a>
+                <a href='#' id='q'>what is this?</a>
+            </div>
             <div id='list'></div>
         </div>
         <script src='simple_statistics.js'></script>
