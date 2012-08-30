@@ -75,7 +75,11 @@ searchbox.onkeyup = function() {
 };
 
 function search(value) {
-    window.location.hash = encodeURIComponent(value);
+    if ('history' in window && 'replaceState' in window.history) {
+        window.history.replaceState({}, '', '#' + encodeURIComponent(value));
+    } else {
+        window.location.hash = encodeURIComponent(value);
+    }
     var r;
     if (value.indexOf('/') === 0) {
         r = new RegExp(value, 'i');
