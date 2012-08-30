@@ -25,10 +25,13 @@ for (var i = 0; i < distilled.length; i++) {
     distilled[i].date = new Date(distilled[i].created_at);
     var d = list.appendChild(document.createElement('div'));
     d.className = 'tweet';
-    var s = d.appendChild(document.createElement('span'));
-    s.className = 'date';
+
+    var a = d.appendChild(document.createElement('a'));
+    a.className = 'date';
+    a.innerHTML = simpleDate(distilled[i].date);
+    a.href = 'https://twitter.com/DCPoliceDept/status/' + distilled[i].id;
+
     var p = d.appendChild(document.createElement('p'));
-    s.innerHTML = simpleDate(distilled[i].date);
     p.innerHTML = distilled[i].text;
     distilled[i].d = d;
     distilled[i].p = p;

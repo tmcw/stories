@@ -15,9 +15,13 @@
                 margin:0;
                 top:0;
             }
-            span.date {
+            a.date {
                 margin-right:10px;
+                text-decoration:none;
                 color:#999;
+            }
+            a.date:hover {
+                text-decoration:underline;
             }
             #search {
                 font:normal 20px/20px 'Helvetica';
@@ -80,18 +84,10 @@
     </head>
     <body>
         <div id='about'>
-            <p>The DC
-            police maintain a twitter account at <a href='https://twitter.com/DCPoliceDept'>@DCPoliceDept</a>
-            that reports near-real-time events with brief synopses. This
-            site is a catalogue of their public postings; the text, as a
-            government production, is public domain.</p>
             <p>In <a href='http://wamu.org/news/11/08/26/dc_police_to_encrypt_radio_communications.php'>September 2011</a>,
             the DC police department <a href='http://www.huffingtonpost.com/2011/09/21/dc-encrypts-police-radios_n_973954.html'>encrypted
-                their radio communications</a> and the Fire/EMS service began
-            filtering what they post on twitter. Radio scanners
-            were previously useful for journalists keeping track of law
-            enforcement.</p>
-            <p>On the right is a search box: it accepts both standard
+                their radio communications</a>.</p>
+            <p>The search box on the right accepts both standard
             queries and <a href='http://regexone.com/'>regular expressions</a>.
             If your query has a matching group, like the query
             <code>(\d+lbs)</code>, the matches will be made into a chart
