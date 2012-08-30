@@ -4,23 +4,19 @@
         <title>Police tweets</title>
         <style>
             body {
-                width:1000px;
                 margin:20px 20px;
                 font:normal 10px/20px 'Verdana';
-            }
-            div.tweet {
-                position:relative;
             }
             div.tweet.hide {
                 display:none;
             }
             div.tweet p {
-                position:absolute;
-                left:110px;
+                display:inline;
                 margin:0;
                 top:0;
             }
             span.date {
+                margin-right:10px;
                 color:#999;
             }
             #search {
@@ -60,11 +56,52 @@
                 background:#d23634;
                 height:10px;
             }
+            a {
+                color:blue;
+            }
+            #about {
+                position:absolute;
+                top:0;
+                left:0;
+                right:0;
+                bottom:0;
+                font:30px/40px 'Helvetica';
+                padding:30px;
+                z-index:999;
+                background:#fff;
+            }
+            #q {
+                position:fixed;
+                bottom:15px;
+                right:15px;
+                font-size:20px;
+            }
         </style>
     </head>
     <body>
+        <div id='about'>
+            <p>The DC
+            police maintain a twitter account at <a href='https://twitter.com/DCPoliceDept'>@DCPoliceDept</a>
+            that reports near-real-time events with brief synopses. This
+            site is a catalogue of their public postings; the text, as a
+            government production, is public domain.</p>
+            <p>In <a href='http://wamu.org/news/11/08/26/dc_police_to_encrypt_radio_communications.php'>September 2011</a>,
+            the DC police department <a href='http://www.huffingtonpost.com/2011/09/21/dc-encrypts-police-radios_n_973954.html'>encrypted
+                their radio communications</a> and the Fire/EMS service began
+            filtering what they post on twitter. Radio scanners
+            were previously useful for journalists keeping track of law
+            enforcement.</p>
+            <p>On the right is a search box: it accepts both standard
+            queries and <a href='http://regexone.com/'>regular expressions</a>.
+            If your query has a matching group, like the query
+            <code>(\d+lbs)</code>, the matches will be made into a chart
+            on the right side of the page, showing number of occurrences for
+            each match.</p>
+            <p>Click anywhere to start.</p>
+        </div>
         <div class='page'>
             <input type='text' id='search' />
+            <a href='#' id='q'>?</a>
             <table id='graph'>
             </table>
             <div id='list'></div>

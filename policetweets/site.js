@@ -1,5 +1,8 @@
 var list = document.getElementById('list');
+var graph = document.getElementById('graph');
+var q = document.getElementById('q');
 var searchbox = document.getElementById('search');
+var about = document.getElementById('about');
 
 distilled = distilled.reverse();
 
@@ -31,7 +34,6 @@ for (var i = 0; i < distilled.length; i++) {
     distilled[i].p = p;
 }
 
-var graph = document.getElementById('graph');
 function setGraph(data) {
     graph.innerHTML = '';
     var values = [];
@@ -47,6 +49,7 @@ function setGraph(data) {
         var d = td.appendChild(document.createElement('div'));
         d.className = 'bar';
         d.style.width = scale(data[j][1]) + '%';
+        d.title = data[j][1] + ' occurrences';
         th.innerHTML = data[j][0];
     }
 }
@@ -94,4 +97,12 @@ searchbox.onkeyup = function(e) {
         }
     });
     setGraph(rows);
+};
+
+about.onclick = function() {
+    about.style.display = 'none';
+};
+
+q.onclick = function() {
+    about.style.display = 'block';
 };
