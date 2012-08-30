@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Police tweets</title>
+        <style>
+            body {
+                width:1000px;
+                margin:20px 20px;
+                font:normal 10px/20px 'Verdana';
+            }
+            div.tweet {
+                position:relative;
+            }
+            div.tweet.hide {
+                display:none;
+            }
+            div.tweet p {
+                position:absolute;
+                left:110px;
+                margin:0;
+                top:0;
+            }
+            span.date {
+                color:#999;
+            }
+            #search {
+                font:normal 20px/20px 'Helvetica';
+                position:absolute;
+                top:20px;
+                right:20px;
+            }
+            #graph {
+                position:absolute;
+                top:60px;
+                right:20px;
+                width:400px;
+                border-spacing:0;
+                border-collapse:collapse;
+                padding:0;
+                line-height:12px;
+            }
+            #graph tr th {
+                text-align:left;
+            }
+            #graph tr th {
+                font-weight:normal;
+                padding-left:5px;
+            }
+            #graph tr td {
+                width:100%;
+            }
+            #graph tr td .bar {
+                float:right;
+            }
+            em {
+                color:#d23634;
+                font-style:normal;
+            }
+            .bar {
+                background:#d23634;
+                height:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='page'>
+            <input type='text' id='search' />
+            <table id='graph'>
+            </table>
+            <div id='list'></div>
+        </div>
+        <script src="http://d3js.org/d3.v2.js"></script>
+        <script src='simple_statistics.js'></script>
+        <script src='distilled.js'></script>
+        <script src='site.js'></script>
+    </body>
+</html>
