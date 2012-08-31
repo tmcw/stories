@@ -73,7 +73,6 @@ a {
     padding:30px;
     z-index:999;
     background:#fff;
-    background:rgba(255, 255, 255, 0.95);
 }
 sup a {
     font-size:9px;
@@ -86,4 +85,9 @@ sup a {
     right:0px;
     padding:10px;
     font-size:12px;
+}
+#q { color: red; }
+
+#start {
+    font-size:40px;
 }
