@@ -6,29 +6,14 @@ var about = document.getElementById('about');
 
 distilled = distilled.reverse();
 
-function simpleDate(d) {
-    var h = d.getHours() + 1;
-    var m = '' + d.getMinutes();
-    if (m.length === 1) m = '0' + m;
-    var ampm = 'am';
-    if (h > 12) {
-        h -= 12;
-        ampm = 'pm';
-    }
-    h = '' + h;
-    if (h.length === 1) h = '0' + h;
-    return h + ':' + m + ampm + ' ' +
-        (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
-}
 
 for (var i = 0; i < distilled.length; i++) {
-    distilled[i].date = new Date(distilled[i].created_at);
     var d = list.appendChild(document.createElement('div'));
     d.className = 'tweet';
 
     var a = d.appendChild(document.createElement('a'));
     a.className = 'date';
-    a.innerHTML = simpleDate(distilled[i].date);
+    a.innerHTML = distilled[i].created_at;
     a.href = 'https://twitter.com/DCPoliceDept/status/' + distilled[i].id;
 
     var p = d.appendChild(document.createElement('p'));
