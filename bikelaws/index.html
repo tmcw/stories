@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Washington, DC Bicycle Laws</title>
+        <title>bikelawDC</title>
         <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <link rel="apple-touch-icon" href="icon.png" />
+        <link rel="apple-touch-icon-precomposed" href="icon-114.png" />
         <style>
             body, ul, p {
                 margin:0;
@@ -22,10 +22,13 @@
                 padding:5px 10px;
                 border-bottom:1px solid #ddd;
             }
+            p cite, p small, p a.report, p span { display:none; }
+            p#touch cite, p#touch small, p#touch a.report, p#touch span { display:inline; }
             cite, small {
-                font:normal 15px/15px 'Helvetica';
+                font:normal 10px/15px 'Helvetica';
             }
-            a.report {
+            cite a { color:#08C; text-decoration:none; }
+            a.report, span.report {
                 text-decoration:none;
                 -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 5px rgba(0, 0, 0, .25), 0 2px 10px rgba(0, 68, 204, .01);
                 background-image:-webkit-linear-gradient(top, #08C, #04C);
@@ -35,6 +38,10 @@
                 border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
                 border-radius:5px;
                 padding:5px;
+                white-space:nowrap;
+            }
+            span.report {
+                background-image:-webkit-linear-gradient(top, #999, #aaa);
             }
             li {
                 background:#f8f8f8;
@@ -44,9 +51,45 @@
         </style>
     </head>
     <body>
-        <p>Cyclists <strong>must</strong> travel in the same direction as traffic. <cite>2201.1</cite></p>
-        <p>Cyclists <strong>must</strong> obey traffic control signals, including stoplights. <cite>1201.15</cite></p>
-        <p>Cyclists <strong>may</strong> ride between lanes. <cite>1201.3(b)</cite></p>
+        <p>Cyclists <strong>must</strong> travel in the same direction as traffic. <cite>
+            <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2201'>18-2201</a></cite></p>
+
+        <p>Cyclists <strong>must</strong> obey traffic control signals, including stoplights.
+        <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1201'>18-1201.15</a></cite></p>
+
+        <p>Cyclists <strong>may</strong> ride between lanes.
+        <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1201'>18-1201.3(b)</a></cite></p>
+
+
+        <p>Cyclists under 16 <strong>must</strong> wear a helmet. <cite>Title 50 Subtitle V Chapter 16</cite>
+        <a class='report' href='http://goo.gl/maps/BLdHZ'>buy one</a></p>
+
+        <p>Drivers <strong>cannot</strong> stop, stand, or park in bike lanes. <cite>
+            <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2405'>
+                2405.1(g)</a></cite>
+        <a href='#' class='report' id='dcdpw'>report to @dcdpw</a></p>
+
+        <p>Drivers <strong>must</strong> only open their door when it is safe
+        for pedestrians. 'Dooring' is the fault of the
+        driver. <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2214'>18-2214</a></cite>
+        <span class='report'>dial 911</a></p>
+
+        <p>Drivers <strong>must</strong> yield right of way to cyclists.
+        <cite>Title 18, 1200.3</cite>
+        <span class='report'>dial 911</a></p>
+
+        <p>Cyclists <strong>may</strong> talk on cell phones while moving. <cite>1731.04</cite></p>
+
+        <p>Cyclists <strong>cannot</strong> ride drunk.
+        <cite><a href='http://legaltimes.typepad.com/blt/2010/04/dc-court-dont-drink-and-bike.html'>DC Traffic Act 1925</a></cite>
+        <span class='report'>call a cab</a>
+        </p>
+
+        <p>Cyclists <strong>must</strong> have a bell. <cite>
+            <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2214'>18-1204</a></cite>
+            <a class='report' href='http://goo.gl/maps/BLdHZ'>buy one</a>
+        </p>
+
         <p>Cyclists <strong>may</strong> ride on the sidewalk <strong>except</strong>
         in this area:
         <a href='cbd.png'>
@@ -57,35 +100,32 @@
             NE to the east
         </small>
         </a></p>
-        <p>Cyclists under 16 <strong>must</strong> wear a helmet. <cite>Title 50 Subtitle V Chapter 16</cite></p>
-        <p>Drivers <strong>cannot</strong> stop, stand, or park in bike lanes. <cite>2405.1(g)</cite>
-        <a href='#' class='report' id='dcdpw'>report</a>
-        </p>
-
-        <p>Drivers <strong>must</strong> only open their door when it is safe for pedestrians. 'Dooring' is the fault of the driver. <cite>2214.4</cite></p>
-        <p>Drivers <strong>must</strong> yield right of way to cyclists. <cite>Title 18, 1200.3</cite>
-        <a href='#' class='report' data-type='aggressive'>report</a>
-        </p>
-
-        <p>Cyclists <strong>may</strong> talk on cell phones while moving. <cite>1731.04</cite></p>
-        <p>Cyclists <strong>must</strong> have a bell. <cite>1204.5</cite></p>
 
         <ul>
-            <li>References:</li>
             <li><a href='http://www.waba.org/index.php'>Washington Area Bicyclist Association</a> 202-518-0524</li>
-            <li>Reference: <a href='http://www.waba.org/resources/laws.php'>WABA pocket guide</a></li>
-            <li>Reference: <a href='http://www.dc.gov/DC/DDOT/Publication%20Files/On%20Your%20Street/Bicycles%20and%20Pedestrians/Bicycles/Bicycle%20Laws/Pocket_Bike_Law_Guide.pdf'>DDOT Pocket Bike Law Guide</a></li>
+            <li><a href='http://www.waba.org/resources/laws.php'>WABA pocket guide</a></li>
+            <li><a href='http://www.dc.gov/DC/DDOT/Publication%20Files/On%20Your%20Street/Bicycles%20and%20Pedestrians/Bicycles/Bicycle%20Laws/Pocket_Bike_Law_Guide.pdf'>DDOT Pocket Bike Law Guide</a></li>
             <li>311 to report reckless driving</li>
         </ul>
+
+        <center><small><a href='http://thenounproject.com/noun/bike-stand/#icon-No1888'>icon from noun project</a></small></center>
+
         <script>
             function tweet(to, x) {
-                location.href = 'https://twitter.com/intent/tweet?text=' + (to || '') + ' ' + (x || '');
+                window.location.href = 'https://twitter.com/intent/tweet?text=' +
+                    encodeURIComponent((to || '') + ' ' + (x || ''));
             }
 
+            var ps = document.getElementsByTagName('p');
+            for (var i = 0; i < ps.length; i++) {
+                ps[i].onclick = function() {
+                    if (this.id == 'touch') return;
+                    (document.getElementById('touch') || {}).id = '';
+                    this.id = 'touch';
+                };
+            }
             document.getElementById('dcdpw').onclick = function() {
-                function simple() {
-                    tweet('@DCDPW');
-                }
+                function simple() { tweet('@DCDPW', 'reporting an issue:'); }
                 if ('geolocation' in navigator && confirm('Include your current location?')) {
                     navigator.geolocation.getCurrentPosition(function(pos) {
                         var map = 'https://maps.google.com/maps?t=h&q=loc:' +
@@ -93,7 +133,7 @@
                             pos.coords.longitude + '&z=17';
                         tweet('@DCDPW', 'reporting an issue at ' + map);
                     }, simple);
-                }
+                } else { simple(); }
             };
         </script>
     </body>
