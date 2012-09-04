@@ -160,7 +160,8 @@
                 } else { simple(); }
             };
 
-            if (navigator.userAgent.toLowerCase().indexOf('iphone') !== -1 &&
+            if (!window.navigator.standalone &&
+                navigator.userAgent.toLowerCase().indexOf('iphone') !== -1 &&
                 document.cookie.indexOf('iphonefirst') === -1) {
                 document.getElementById('iphone').style.display = 'block';
                 document.cookie = 'iphonefirst';
