@@ -4,7 +4,7 @@
         <title>bikelawDC</title>
         <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="white" />
         <link rel="apple-touch-icon-precomposed" href="icon-114.png" />
         <link rel="apple-touch-startup-image" href="startup.png" />
         <style>
@@ -49,9 +49,35 @@
                 padding:5px 10px 4px 10px;
                 border-top:1px solid #ccc;
             }
+            #iphone {
+                display:none;
+                position:fixed;
+                bottom:10px;
+                left:10px;
+                font-weight:bold;
+                right:10px;
+                border:1px solid #ccc;
+                padding:5px;
+                text-align:center;
+                background:#fff;
+                box-shadow:2px 2px 50px #aaa;
+            }
+            .addtohome {
+                display:inline-block;
+                width:18px;
+                height:15px;
+                background-repeat:no-repeat;
+                background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAPCAQAAABDj1eZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUdJREFUKFNtkLtLw1AYxS/qJLhXVKr2ZRulUNtiqgSb3CziICI6ucTFVYcOnaQOFRwUnNTRwUWXgpP/QdHNUEQUHGxofYBTlRs83iZNjKTncOGe7/vx3QchXUWn6FL3jhfKUdCCr5zuifV5oDiHQM+c+CIhiiCSWNu08iq9oHXKLAiqrgR4UXqlOEYZt++ExEL0wW7+OW0G10muLv9gmqfe5FAWKmTMYQYiFL7PYwyLOD8lSjNh2gdnPzMII4QUBxc4OothbAF7GCBKQ0YbSWyPQsIhqvetS+y0ygGMo/KFZfviDvR4AhwgZU9dGYnA0J/6ndc15i3ouYIMcVVUcEXIoOxCeRCfwP8sXBSdjtpUv/1QW+K16kCCIUC4id9Fa0JtkluwVkSfqPL6RwfSDA0aNlx7k/bWgViB7bMS2/1vk5sdsZLN/ALSuL3tylO4RAAAAABJRU5ErkJggg==);
+                background-size:18px 15px;
+                text-indent:-9999em;
+                overflow:hidden;
+            }
         </style>
     </head>
     <body>
+        <div id='iphone'>tap <span class='addtohome'></span> and Add To Home Screen
+            to install this app</div>
+
         <p>Cyclists <strong>must</strong> travel in the same direction as traffic. <cite>
             <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2201'>18-2201</a></cite></p>
 
@@ -133,6 +159,17 @@
                     }, simple);
                 } else { simple(); }
             };
+
+            if (navigator.userAgent.toLowerCase().indexOf('iphone') !== -1 &&
+                document.cookie.indexOf('iphonefirst') === -1) {
+                document.getElementById('iphone').style.display = 'block';
+                document.cookie = 'iphonefirst';
+            }
+
+            document.getElementById('iphone').ontouchstart = function(e) {
+                this.style.display = 'none';
+                return false;
+            }
         </script>
     </body>
 </html>
