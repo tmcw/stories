@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html manifest='manifest'>
     <head>
         <title>bikelawDC</title>
         <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="apple-touch-icon-precomposed" href="icon-114.png" />
+        <link rel="apple-touch-startup-image" href="startup.png" />
         <style>
             body, ul, p {
                 margin:0;
@@ -124,6 +125,7 @@
                     this.id = 'touch';
                 };
             }
+
             document.getElementById('dcdpw').onclick = function() {
                 function simple() { tweet('@DCDPW', 'reporting an issue:'); }
                 if ('geolocation' in navigator && confirm('Include your current location?')) {
