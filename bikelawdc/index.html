@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest='manifest.manifest'>
+<html>
     <head>
         <title>bikelawDC</title>
         <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
@@ -14,35 +14,51 @@
             }
             body {
                 color:#333;
-                font:normal 20px/30px 'Helvetica';
+                font:normal 18px/25px 'Helvetica';
             }
             a { color:#0045cc; }
             ul { list-style-type:none; }
             img { max-width:100%; }
             p {
                 padding:5px 10px;
-                border-bottom:1px solid #ddd;
             }
-            p cite, p small, p a.report, p span { display:none; }
-            p#touch cite, p#touch small, p#touch a.report, p#touch span { display:inline; }
-            cite, small {
-                font:normal 10px/15px 'Helvetica';
-            }
-            cite a { color:#08C; text-decoration:none; }
-            a.report, span.report {
+            cite, a.report, span.report {
+                font:normal 13px/25px 'Helvetica';
                 text-decoration:none;
-                -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, .1), 0 1px 5px rgba(0, 0, 0, .25), 0 2px 10px rgba(0, 68, 204, .01);
-                background-image:-webkit-linear-gradient(top, #08C, #04C);
-                color:#fff;
-                font-size:14px;
-                border-width:1px;
-                border-color:rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-                border-radius:5px;
-                padding:5px;
-                white-space:nowrap;
+            }
+            cite {
+                display:block;
+                padding:0 0;
+                text-align:left;
+                width:45%;
+                position:relative;
+                float:left;
+            }
+            table {
+                border-collapse:collapse; border-spacing: 0;
+            }
+            div.buttons {
+                background-image:-webkit-linear-gradient(top, #fff, #eee);
+                border:0;
+                border-bottom:1px solid #ccc;
+                border-top:1px solid #eee;
+                padding:0px 10px 0px 10px;
+                position:relative;
+            }
+            div.buttons::before, div.buttons::after {
+                display: table;
+                content: "";
+            }
+            div.buttons::after { clear: both; }
+            a { color: #337EAD; text-decoration:none; }
+            a.report, span.report {
+                border-left:1px solid #eee;
+                padding-left:10px;
+                width:45%;
+                position:relative;
+                float:left;
             }
             span.report {
-                background-image:-webkit-linear-gradient(top, #999, #aaa);
             }
             li {
                 background:#f8f8f8;
@@ -78,43 +94,73 @@
         <div id='iphone'>tap <span class='addtohome'></span> and Add To Home Screen
             to install this app</div>
 
-        <p>Cyclists <strong>must</strong> travel in the same direction as traffic. <cite>
-            <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2201'>18-2201</a></cite></p>
+        <p>Cyclists <strong>must</strong> travel in the same direction as traffic.</p>
+        <div class='buttons'>
+            <cite>
+            <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2201'>DCMR 18-2201</a></cite>
+        </div>
 
         <p>Cyclists <strong>must</strong> obey traffic control signals, including stoplights.
-        <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1201'>18-1201.15</a></cite></p>
+        <div class='buttons'>
+            <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1201'>DCMR 18-1201</a></cite>
+        </div>
+        </p>
 
         <p>Cyclists <strong>may</strong> ride between lanes.
-        <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1201'>18-1201.3(b)</a></cite></p>
+        <div class='buttons'>
+            <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1201'>DCMR 18-1201</a></cite>
+        </div></p>
 
 
-        <p>Cyclists under 16 <strong>must</strong> wear a helmet. <cite>Title 50 Subtitle V Chapter 16</cite>
-        <a class='report' href='http://goo.gl/maps/BLdHZ'>buy one</a></p>
+        <p>Cyclists under 16 <strong>must</strong> wear a helmet.
+        <div class='buttons'>
+            <cite><a href='http://weblinks.westlaw.com/result/default.aspx?cite=UUID%28NB27A193095-E411DB9BCF9-DAC28345A2A%29&db=1000869&findtype=VQ&fn=_top&pbc=DA010192&rlt=CLID_FQRLT4782123331949&rp=%2FSearch%2Fdefault%2Ewl&rs=WEBL12%2E07&service=Find&spa=DCC-1000&sr=TC&vr=2%2E0'>Code 50-V-16-A</cite>
+        <a class='report' href='http://goo.gl/maps/BLdHZ'>buy one</a>
+        </div>
+        </p>
 
-        <p>Drivers <strong>cannot</strong> stop, stand, or park in bike lanes. <cite>
+        <p>Drivers <strong>cannot</strong> stop, stand, or park in bike lanes. 
+        <div class='buttons'>
+        <cite>
             <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2405'>
-                2405.1(g)</a></cite>
-        <a href='#' class='report' id='dcdpw'>report to @dcdpw</a></p>
+                DCMR 2405</a></cite>
+        <a href='#' class='report' id='dcdpw'>report to @dcdpw</a>
+        </div>
+        </p>
 
         <p>Drivers <strong>must</strong> only open their door when it is safe
         for pedestrians. 'Dooring' is the fault of the
-        driver. <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2214'>18-2214</a></cite>
-        <span class='report'>dial 911</a></p>
+        driver.
+        <div class='buttons'>
+            <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2214'>DCMR 18-2214</a></cite>
+            <span class='report'>dial 911</a>
+        </div></p>
 
         <p>Drivers <strong>must</strong> yield right of way to cyclists.
-        <cite>Title 18, 1200.3</cite>
-        <span class='report'>dial 911</a></p>
+        <div class='buttons'>
+            <cite>
+                <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-1200'>DCMR 18-1200</a>
+            </cite>
+        <span class='report'>dial 911</a>
+    </div></p>
 
-        <p>Cyclists <strong>may</strong> talk on cell phones while moving. <cite>1731.04</cite></p>
+    <p>Cyclists <strong>may</strong> talk on cell phones while moving.
+    <div class='buttons'>
+        <cite>1731.04</cite>
+    </div></p>
 
         <p>Cyclists <strong>cannot</strong> ride drunk.
-        <cite><a href='http://legaltimes.typepad.com/blt/2010/04/dc-court-dont-drink-and-bike.html'>DC Traffic Act 1925</a></cite>
-        <span class='report'>call a cab</a>
+        <div class='buttons'>
+            <cite><a href='http://legaltimes.typepad.com/blt/2010/04/dc-court-dont-drink-and-bike.html'>DC Traffic Act 1925</a></cite>
+            <span class='report'>call a cab</a>
+        </div>
         </p>
 
-        <p>Cyclists <strong>must</strong> have a bell. <cite>
-            <a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2214'>18-1204</a></cite>
+        <p>Cyclists <strong>must</strong> have a bell. 
+            <div class='buttons'>
+                <cite><a href='http://www.dcregs.dc.gov/Gateway/RuleHome.aspx?RuleNumber=18-2214'>18-1204</a></cite>
             <a class='report' href='http://goo.gl/maps/BLdHZ'>buy one</a>
+        </div>
         </p>
 
         <p>Cyclists <strong>may</strong> ride on the sidewalk <strong>except</strong>
@@ -129,6 +175,7 @@
             <li><a href='http://www.waba.org/resources/laws.php'>WABA pocket guide</a></li>
             <li><a href='http://www.dc.gov/DC/DDOT/Publication%20Files/On%20Your%20Street/Bicycles%20and%20Pedestrians/Bicycles/Bicycle%20Laws/Pocket_Bike_Law_Guide.pdf'>DDOT Pocket Bike Law Guide</a></li>
             <li>311 to report reckless driving</li>
+            <li><a href='http://itunes.apple.com/us/app/seeclickfix/id322000552?mt=8'>SeeClickFix</a> to report potholes, etc</li>
         </ul>
 
         <center><small><a href='http://thenounproject.com/noun/bike-stand/#icon-No1888'>icon from noun project</a></small></center>
