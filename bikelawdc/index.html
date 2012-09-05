@@ -16,6 +16,16 @@
                 color:#333;
                 font:normal 18px/25px 'Helvetica';
             }
+            #desktop { display:none; background:#FFA; padding:10px; }
+            @media screen and (min-width: 800px) {
+                body {
+                    width:320px;
+                    margin:20px auto;
+                }
+                #desktop {
+                    display:block;
+                }
+            }
             a { color:#0045cc; }
             ul { list-style-type:none; }
             img { max-width:100%; }
@@ -91,6 +101,9 @@
         </style>
     </head>
     <body>
+        <div id='desktop'>this site is designed for iPhones and Android devices.
+            Open <a href='http://bit.ly/bikelawdc'>http://bit.ly/bikelawdc</a>
+            on your phone to get it.</div>
         <div id='iphone'>tap <span class='addtohome'></span> and Add To Home Screen
             to install this app</div>
 
