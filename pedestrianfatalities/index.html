@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pedestrian and Driver Fatalities in the US</title>
+    <script src="http://d3js.org/d3.v2.js"></script>
+    <style type="text/css">
+        body {
+            width:960px;
+            margin:10px auto;
+            font: 14px/25px sans-serif;
+        }
+        svg {
+            width: 960px;
+            height: 500px;
+            font: 9px sans-serif;
+            border: solid 1px #ccc;
+            shape-rendering: crispEdges;
+        }
+        .legend {
+            font: 14px sans-serif;
+        }
+        .options {
+            font: 12px sans-serif;
+            text-shadow:1px 1px 1px #fff;
+            padding:10px 0;
+        }
+        .axis path {
+            display: none;
+        }
+        .axis line {
+            shape-rendering: crispEdges;
+            stroke: #eee;
+        }
+
+        .axis .minor line {
+            stroke: #777;
+            stroke-dasharray: 2,2;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Pedestrian Fatalities</h1>
+    <p>A recharting of this <a href='http://www.washingtonpost.com/local/trafficandcommuting/half-of-dc-traffic-fatalities-were-pedestrians/2012/08/06/107be118-dff8-11e1-a19c-fcfa365396c8_story.html'>poorly truthed article in the Washington Post</a>.
+    Data thanks to <a href='http://www-nrd.nhtsa.dot.gov/Pubs/811625.pdf'>NHTSA</a>.
+    The article exaggerated the importance of DC's statistic that was based on a sample
+    size of 24 and generally caused by the District being a city in a large
+    comparison with states.
+    </p>
+    <div class='options'>
+        <strong>Scale: </strong>
+        <input checked=checked type='radio' name='scale' id='absolute' /><label for='absolute'>Absolute</label>
+        <input type='radio' name='scale' id='normalize' /><label for='normalize'>Normalize for Population</label>
+        <input type='radio' name='scale' id='percentage' /><label for='percentage'>Percentage ped/driver</label>
+        <br />
+        <strong>Sort: </strong>
+        <input checked=checked type='radio' name='order' id='accid' /><label for='accid'>Total # of Accidents</label>
+        <input type='radio' name='order' id='pop' /><label for='pop'>State Population</label>
+        <input type='radio' name='order' id='per' /><label for='per'>Fatalities per Resident</label>
+    </div>
+    <script type="text/javascript">
+
+var w = 960,
+    h = 500,
+    p = [20, 50, 30, 20],
+    x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]]),
+    y = d3.scale.linear().range([0, h - p[0] - p[2]]),
+    z = d3.scale.ordinal().range(["lightpink", "lightblue"]);
+
+var svg = d3.select("body").append("svg:svg")
+    .attr("width", w)
+    .attr("height", h)
+  .append("svg:g")
+    .attr("transform", "translate(" + p[3] + "," + (h - p[2]) + ")");
+
+d3.json("abbrevs.json", function(abbrevs) {
+d3.json("fatalities.json", function(fatalitiesa) {
+
+  var current_offset, normalized;
+  // Transpose the data into layers by cause.
+  function fd(offset) {
+    current_offset = offset;
+    return d3.layout.stack().order('default').offset(offset)(["motorist", "pedestrian"].map(function(cause) {
+      return fatalitiesa.map(function(d) {
+        var name = abbrevs.filter(function(a) { return a.name == d[0].toUpperCase(); })[0].abbr;
+        var d;
+        if (cause == 'motorist') {
+            d = {x: name, accid: d[1], pop: d[2], y: +d[1] - +d[3]};
+        } else if (cause == 'pedestrian') {
+            d = {x: name, accid: d[1], pop: d[2], y: +d[3]};
+        }
+        if (normalized) {
+            d.y = d.y / d.pop;
+        }
+        return d;
+      });
+    }));
+  }
+
+  var fatalities = fd('zero');
+
+  // Compute the x-domain (by date) and y-domain (by top).
+  x.domain(fatalities[0].map(function(d) { return d.x; }));
+  y.domain([0, d3.max(fatalities[fatalities.length - 1], function(d) { return d.y0 + d.y; })]);
+
+  // Add a group for each cause.
+  var cause = svg.selectAll("g.cause")
+      .data(fatalities)
+    .enter().append("svg:g")
+      .attr("class", "cause")
+      .style("fill", function(d, i) { return z(i); })
+      .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
+
+  // Add a rect for each date.
+  var rect = cause.selectAll("rect")
+      .data(Object)
+    .enter().append("svg:rect")
+      .attr('class', 'bar');
+
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .tickSize(0)
+    .orient("bottom");
+
+  svg.append("g")
+      .attr('class', 'x axis')
+      .call(xAxis);
+
+  var yAxis = d3.svg.axis()
+    .scale(y.copy().range([h - p[0] - p[2], 0]))
+    .tickSize(0)
+    .orient('right');
+
+  svg.append("g")
+      .attr('class', 'y axis')
+      .attr('transform', 'translate(' + (w - p[1] - p[3]) + ', -' + (h - p[0] - p[2]) + ')')
+      .call(yAxis);
+
+  function absolute() {
+    rule.selectAll('text')
+      .text(d3.format(",d"));
+  }
+
+  function updateBars() {
+    cause.selectAll('rect.bar')
+      .data(Object)
+      .transition()
+      .attr("width", x.rangeBand())
+      .attr("x", function(d) { return x(d.x); })
+      .attr("y", function(d) { return -y(d.y0) - y(d.y); })
+      .attr("height", function(d) { return y(d.y); })
+    svg.selectAll('.x.axis')
+      .transition()
+      .call(xAxis);
+    svg.selectAll('.y.axis')
+      .transition()
+    .call(yAxis
+        .scale(y.copy().range([h - p[0] - p[2], 0]))
+    );
+  }
+  function percentage(q) {
+    if (!q) normalized = false;
+    fatalities = fd('expand');
+    svg.selectAll("g.cause")
+      .data(fatalities)
+    y.domain([0, 1]);
+    updateBars();
+  }
+  function normalize(q) {
+    if (!q) normalized = true;
+    fatalities = fd('zero');
+    svg.selectAll("g.cause")
+      .data(fatalities)
+    y.domain([0, d3.max(fatalities[fatalities.length - 1], function(d) { return d.y0 + d.y; })]);
+    updateBars();
+  }
+  function absolute(q) {
+    if (!q) normalized = false;
+    fatalities = fd('zero');
+    svg.selectAll("g.cause")
+      .data(fatalities)
+    y.domain([0, d3.max(fatalities[fatalities.length - 1], function(d) { return d.y0 + d.y; })]);
+    updateBars();
+  }
+  function reset() {
+    if (current_offset == 'zero') absolute(true);
+    if (current_offset == 'expand') percentage(true);
+  }
+  function pop() {
+    x.domain(fatalities[0].sort(function(a, b) {
+        return a.pop - b.pop;
+    }).map(function(d) {
+        return d.x;
+    }));
+    reset();
+  }
+  function accid() {
+    x.domain(fatalities[0].sort(function(a, b) {
+        return a.accid - b.accid;
+    }).map(function(d) {
+        return d.x;
+    }));
+    reset();
+  }
+  function per() {
+    x.domain(fatalities[0].sort(function(a, b) {
+        return (a.accid / a.pop) - (b.accid / b.pop);
+    }).map(function(d) {
+        return d.x;
+    }));
+    reset();
+  }
+  absolute();
+  accid();
+  d3.select('#percentage').on('change', percentage)
+  d3.select('#absolute').on('change', absolute)
+  d3.select('#normalize').on('change', normalize)
+  d3.select('#accid').on('change', accid)
+  d3.select('#per').on('change', per)
+  d3.select('#pop').on('change', pop)
+});
+});
+
+    </script>
+  </body>
+</html>
